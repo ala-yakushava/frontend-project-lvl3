@@ -3,5 +3,6 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/560c837ecdae62e65c6a/test_coverage)](https://codeclimate.com/github/linarsy/frontend-project-lvl3/test_coverage)
 
 # frontend-project-lvl3
+**перейти на страницу https://linay-rss.surge.sh**
 
 Проект выполнен в рамках прохождения профессии "Фронтенд JavaScript" на сайте [Хекслет](https://ru.hexlet.io/).
