@@ -30,13 +30,11 @@ watch(state, 'currentUrl', () => {
 const onInputFieldInput = (evt) => {
   const { value } = evt.target;
   const isValidUrl = isURL(value) && !state.urls.find(item => item === value);
-  state.response = 'wait';
+  state.addFeed = 'wait';
 
   if (value === '') state.currentUrl = 'empty';
   else if (isValidUrl) state.currentUrl = 'valid';
   else state.currentUrl = 'invalid';
 };
 
-const validate = () => inputField.addEventListener('input', onInputFieldInput);
-
-export default validate;
+export default () => inputField.addEventListener('input', onInputFieldInput);

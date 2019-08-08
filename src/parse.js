@@ -7,24 +7,27 @@ const parseNews = (item) => {
     description: item.querySelector('description').textContent,
   };
 
-  state.news.push(news);
+  const isNews = state.news.find(({ link }) => link === news.link);
+  return isNews ? null : news;
 };
 
-const parseFeeds = (data) => {
+const parseFeed = (data) => {
   const feed = {
     title: data.querySelector('title').textContent,
     link: data.querySelector('link').textContent,
     description: data.querySelector('description').textContent,
   };
 
-  state.feeds.push(feed);
-  data.querySelectorAll('item').forEach(parseNews);
+  const isFeed = state.feeds.find(({ title }) => title === feed.title);
+  if (!isFeed) state.feeds.push(feed);
+
+  const items = data.querySelectorAll('item');
+  const currentNews = Array.from(items).map(parseNews).filter(item => item !== null);
+  state.news.unshift(...currentNews);
 };
 
-const parse = (response) => {
+export default (response) => {
   const parser = new DOMParser();
   const data = parser.parseFromString(response.data, 'text/xml');
-  parseFeeds(data);
+  parseFeed(data);
 };
-
-export default parse;

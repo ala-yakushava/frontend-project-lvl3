@@ -1,7 +1,8 @@
 const state = {
   currentUrl: 'empty',
-  response: 'wait',
-  urls: [],
+  addFeed: 'wait',
+  updateNews: 'wait',
+  urls: ['http://lorem-rss.herokuapp.com/feed?unit=second&interval=5'],
   feeds: [],
   news: [],
 };
