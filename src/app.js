@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap/js/dist/modal';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
-import { updateNews, sendFeedRequest } from './request';
+import updateRss from './update';
 
 export default () => {
   const state = {
@@ -14,7 +14,7 @@ export default () => {
   };
 
   watch(state);
-  updateNews(state);
+  updateRss(state);
 
   const form = document.querySelector('#rss-form');
   const inputField = form.querySelector('#rss-input');
@@ -31,8 +31,8 @@ export default () => {
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    const url = inputField.value;
-    sendFeedRequest(state, url);
+    const url = evt.target.elements.url.value;
+    updateRss(state, url);
     state.feedRequest = 'requested';
   };
 
