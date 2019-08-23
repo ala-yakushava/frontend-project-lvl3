@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap/js/dist/modal';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
-import updateRss from './update';
+import { startPeriodicUpdatesAddedFeeds, addFeed } from './requests';
 
 export default () => {
   const state = {
@@ -10,11 +10,11 @@ export default () => {
     feedRequest: 'wait',
     urls: ['http://lorem-rss.herokuapp.com/feed?unit=second&interval=5'],
     feeds: [],
-    news: [],
+    rssItems: [],
   };
 
   watch(state);
-  updateRss(state);
+  startPeriodicUpdatesAddedFeeds(state);
 
   const form = document.querySelector('#rss-form');
   const inputField = form.querySelector('#rss-input');
@@ -33,7 +33,7 @@ export default () => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     const url = formData.get('url');
-    updateRss(state, url);
+    addFeed(state, url);
     state.feedRequest = 'requested';
   };
 

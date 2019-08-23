@@ -1,13 +1,17 @@
-const renderNews = (news) => {
+import i18next from './localization';
+
+const renderRssItems = (rssItems) => {
   const render = ({ title, link, description }) => (
     `<li class="list-group-item d-flex justify-content-between align-items-center bg-light">
       <a href=${link} class="text-dark">${title}</a>
-      <button type="button" class="btn btn-info ml-4" data-toggle="modal" data-target="#infoModal" data-whatever='${description}'>Info</button>
+      <button type="button" class="btn btn-info ml-4" data-toggle="modal" data-target="#infoModal" data-whatever='${description}'>
+        ${i18next.t('button.info')}
+      </button>
     </li>`
   );
 
-  const newsList = document.querySelector('#rss-news');
-  newsList.innerHTML = news.map(render).join('');
+  const rssItemsList = document.querySelector('#rss-news');
+  rssItemsList.innerHTML = rssItems.map(render).join('');
 };
 
 const renderFeeds = (feeds) => {
@@ -21,9 +25,9 @@ const renderFeeds = (feeds) => {
   feedsList.innerHTML = feeds.map(render).join('');
 };
 
-const renders = {
-  news: renderNews,
+const renderings = {
+  rssItems: renderRssItems,
   feeds: renderFeeds,
 };
 
-export default (data, type) => renders[type](data);
+export default (data, type) => renderings[type](data);

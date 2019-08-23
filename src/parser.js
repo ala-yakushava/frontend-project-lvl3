@@ -1,11 +1,11 @@
-const parseNews = (article) => {
-  const news = {
-    title: article.querySelector('title').textContent,
-    link: article.querySelector('link').textContent,
-    description: article.querySelector('description').textContent,
+const parseRssItem = (item) => {
+  const rssItem = {
+    title: item.querySelector('title').textContent,
+    link: item.querySelector('link').textContent,
+    description: item.querySelector('description').textContent,
   };
 
-  return news;
+  return rssItem;
 };
 
 export default (data) => {
@@ -17,7 +17,7 @@ export default (data) => {
     title: doc.querySelector('title').textContent,
     link: doc.querySelector('link').textContent,
     description: doc.querySelector('description').textContent,
-    items: Array.from(items).map(parseNews),
+    items: Array.from(items).map(parseRssItem),
   };
 
   return feed;
