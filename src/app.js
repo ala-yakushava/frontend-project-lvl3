@@ -31,7 +31,8 @@ export default () => {
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
-    const url = evt.target.elements.url.value;
+    const formData = new FormData(evt.target);
+    const url = formData.get('url');
     updateRss(state, url);
     state.feedRequest = 'requested';
   };
