@@ -1,5 +1,5 @@
 import { watch } from 'melanke-watchjs';
-import i18next from './localization';
+import localize from './localization';
 import render from './renderings';
 
 export default (state) => {
@@ -34,18 +34,24 @@ export default (state) => {
   watch(state, 'feedRequest', () => {
     switch (state.feedRequest) {
       case 'wait':
-        note.textContent = i18next.t('note.wait');
+        localize((t) => {
+          note.textContent = t('note.wait');
+        });
         note.classList.remove('text-danger', 'text-success');
         break;
       case 'requested':
-        note.textContent = i18next.t('note.request');
+        localize((t) => {
+          note.textContent = t('note.request');
+        });
         note.classList.add('text-warning');
         button.classList.add('disabled');
         button.setAttribute('disabled', 'disabled');
         inputField.setAttribute('disabled', 'disabled');
         break;
       case 'finished':
-        note.textContent = i18next.t('note.succes');
+        localize((t) => {
+          note.textContent = t('note.succes');
+        });
         note.classList.remove('text-warning');
         note.classList.add('text-success');
         button.classList.remove('disabled');
@@ -53,7 +59,9 @@ export default (state) => {
         inputField.removeAttribute('disabled');
         break;
       case 'failed':
-        note.textContent = i18next.t('note.error');
+        localize((t) => {
+          note.textContent = t('note.error');
+        });
         note.classList.remove('text-warning');
         note.classList.add('text-danger');
         button.classList.remove('disabled');

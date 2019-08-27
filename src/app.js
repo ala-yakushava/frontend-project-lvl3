@@ -2,6 +2,8 @@ import $ from 'jquery';
 import 'bootstrap/js/dist/modal';
 import isURL from 'validator/lib/isURL';
 import watch from './watch';
+import localize from './localization';
+import homePage from './localization/home-page';
 import { startPeriodicUpdatesAddedFeeds, addFeed } from './requests';
 
 export default () => {
@@ -15,6 +17,7 @@ export default () => {
 
   watch(state);
   startPeriodicUpdatesAddedFeeds(state);
+  localize(homePage);
 
   const form = document.querySelector('#rss-form');
   const inputField = form.querySelector('#rss-input');

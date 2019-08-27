@@ -1,11 +1,9 @@
-import i18next from './localization';
-
 const renderRssItems = (rssItems) => {
   const render = ({ title, link, description }) => (
     `<li class="list-group-item d-flex justify-content-between align-items-center bg-light">
       <a href=${link} class="text-dark">${title}</a>
       <button type="button" class="btn btn-info ml-4" data-toggle="modal" data-target="#infoModal" data-whatever='${description}'>
-        ${i18next.t('button.info')}
+        Info
       </button>
     </li>`
   );

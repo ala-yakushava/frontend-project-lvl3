@@ -30,15 +30,11 @@ export const startPeriodicUpdatesAddedFeeds = (state) => {
 export const addFeed = (currentState, url) => {
   const state = currentState;
 
-  const update = ({ data }) => {
-    const feed = parse(data);
-    state.feeds.push(feed);
-    state.rssItems.unshift(...feed.items);
-  };
-
   axios.get(`${proxy}${url}`)
-    .then((content) => {
-      update(content);
+    .then(({ data }) => {
+      const feed = parse(data);
+      state.feeds.push(feed);
+      state.rssItems.unshift(...feed.items);
       state.urls.push(url);
       state.currentInput = 'empty';
       state.feedRequest = 'finished';
